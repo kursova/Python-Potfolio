@@ -18,3 +18,20 @@ for dirname, _, filenames in os.walk('/kaggle/input'):
 
 #let's begin 
 print("hello word")
+print ('hello "python"')
+print ("hello \"python\"")
+'''
+I can write comments here 
+'''
+
+# define values
+name = "gizem"
+age= 33
+
+print(name)
+print(type(name))
+print(name, age, sep=",")#seperator
+print(name, age, sep="-", end="***") # default end using is : "/n" 
+print(name)
+
+#input ()
