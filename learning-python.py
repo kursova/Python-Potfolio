@@ -57,3 +57,19 @@ if user==user2:
         print("you can not enter the system")
 else:
     print("you can not enter the system")
+
+    #easy way 
+    
+user="admin"
+password="demo"
+
+user2=inpurt("user name: ")
+password2=inpurt("password: ")
+age=input("age: ")
+
+if user==user2 and password==password2 and age>=18:
+    print ("you can enter the system")
+else:
+    print ("you can not enter the system")
+    
+    
