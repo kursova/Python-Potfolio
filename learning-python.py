@@ -35,3 +35,25 @@ print(name, age, sep="-", end="***") # default end using is : "/n"
 print(name)
 
 #input ()
+name = input("name: ")
+print(name)
+
+#if else 
+user="admin"
+password="demo"
+
+user2=inpurt("user name: ")
+
+
+if user==user2:
+    password2=inpurt("password: ")
+    if password==password2:
+        age=input("age: ")
+        if age>=18:
+            print("you can enter the system")
+        else:
+            print("you can not enter the system")
+    else:
+        print("you can not enter the system")
+else:
+    print("you can not enter the system")
