@@ -1,4 +1,5 @@
 # %% [code]
+# %% [code]
 # This Python 3 environment comes with many helpful analytics libraries installed
 # It is defined by the kaggle/python Docker image: https://github.com/kaggle/docker-python
 # For example, here's several helpful packages to load
@@ -37,16 +38,17 @@ test_images = test_images / 255.0
 #modeli kurma
 model = tf.keras.Sequential([
     tf.keras.layers.Flatten(input_shape=(28, 28)),
-    tf.keras.layers.Dense(16, activation='relu'), #nöron sayısını değiştirdim.
-    tf.keras.layers.Dense(8, activation='relu'),
-    #tf.keras.layers.Dense(8, activation='relu'), #katman ekledim
+    tf.keras.layers.Dense(8, activation='elu'), #nöron sayısını değiştirdim.
+    tf.keras.layers.Dropout(0.1), #düzenlileştirme
+    tf.keras.layers.Dense(16, activation=tf.keras.layers.LeakyReLU(alpha=0.1)),
+    tf.keras.layers.Dense(32, activation='relu'), #katman ekledim
 
 
     tf.keras.layers.Dense(10,activation="softmax")
 ])
 
-#düzenlileştirme (bu düzleştirmeyi bu aşamada mı yapmalıyız emin olamadım)
-tf.keras.layers.Dropout(0.5)
+
+
 
 model.summary()
 
@@ -58,7 +60,7 @@ model.compile(optimizer='adam', #optimizerı adagrad olarak değiştirdim.
 
 #uygulama
 
-hist=model.fit(train_images, train_labels,validation_data=(test_images,test_labels), epochs=15)
+hist=model.fit(train_images, train_labels,validation_data=(test_images,test_labels), epochs=10)
 
 test_loss, test_acc = model.evaluate(test_images,  test_labels, verbose=2)
 
@@ -88,3 +90,9 @@ plt.legend(['train', 'val'], loc='upper right')
 
 #nöronlardan biri 16 olarak değiştirildi. yeni katman eklendi. dropout eklendi. epoch 15 olarak değiştirildi.
 #accuracy: 0.8809 - loss: 0.3292 - val_accuracy: 0.8574 - val_loss: 0.4006
+#drop out 
+#drop out 0.2:  accuracy: 0.8242 - loss: 0.4896 - val_accuracy: 0.8376 - val_loss: 0.457
+#rop out 0.3: accuracy: 0.7916 - loss: 0.5778 - val_accuracy: 0.7974 - val_loss: 0.5574
+#drop out 0.4: accuracy: 0.7584 - loss: 0.6606 - val_accuracy: 0.8134 - val_loss: 0.5313               
+#drop out 0.1: accuracy: 0.8468 - loss: 0.4271 - val_accuracy: 0.8441 - val_loss: 0.4336
+#drop out fonksiyonunda en iyi sonucu 0.1 değeri verdi. bunu kullanabiliriz. 
